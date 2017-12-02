@@ -21,6 +21,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
+
 // No direct access
 defined('_JEXEC') or die('Restricted access');
 
@@ -90,7 +91,7 @@ class plgSystemTinyseo extends JPlugin
                 $request_uri             = $_SERVER['REQUEST_URI'];
                 $redirect = $mapurl = $redirect_home = $trailpresent = $lowercase = $preg_match = false;
                 
-                //redirect 162.209.6.223 to abc-test.com
+                //redirect IP e.g. 162.120.2.xxx to abc-test.com
                 if(strlen($map_ip_address)>=5 && $http_host==$map_ip_address){
                     $redirect = $mapurl   = true;
                 }
