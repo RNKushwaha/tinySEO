@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension version="1.6" method="upgrade" type="plugin" group="system">
+	<name>PLG_SYSTEM_TINYSEO</name>
+	<creationDate>2017-12-02</creationDate>
+	<author>RN Kushwaha</author>
+	<authorEmail>rn.kushwaha022@gmail.com</authorEmail>
+	<authorUrl>https://www.cruzersoftwares.com/tinyseo</authorUrl>
+	<copyright>Copyright (C) 2017 RN Kushwaha. All rights reserved.</copyright>	
+	<license>http://www.gnu.org/licenses/gpl</license>
+	<version>1.0.0</version>
+	<description>TINYSEO_DESCRIPTION</description>
+	<files>
+		<filename plugin="tinyseo">tinyseo.php</filename>
+        <filename>index.html</filename>
+		<filename>logo.png</filename>
+	</files>
+	<languages folder="language">
+        <language tag="en-GB">en-GB/en-GB.plg_system_tinyseo.ini</language>
+        <language tag="en-GB">en-GB/en-GB.plg_system_tinyseo.sys.ini</language>
+    </languages>
+	<config>
+        <fields name="params">
+            <fieldset name="basic_options" label="Basic Options">
+                <field name="remove_trailing_slashes" type="radio" class="btn-group" label="REMOVE_TRAILING_SLASHES_LABEL" default="1" >
+                        <option value="0">JNO</option>
+                        <option value="1">JYES</option>
+                </field>
+                <field name="remove_index_file" type="radio" class="btn-group" label="REMOVE_INDEX_FILE_LABEL" default="1" >
+                        <option value="0">JNO</option>
+                        <option value="1">JYES</option>
+                </field>
+                <field name="redirect_status_code" type="radio" class="btn-group" label="REDIRECT_WITH_301_LABEL" default="1" >
+                        <option value="0">JNO</option>
+                        <option value="1">JYES</option>
+                </field>
+                <field name="redirect_to_lowercase" type="radio" class="btn-group" label="REDIRECT_TO_LOWERCASE_LABEL" default="1" >
+                        <option value="0">JNO</option>
+                        <option value="1">JYES</option>
+                </field>
+                 <field name="map_ip_address" type="jchgroup" section="start" label="MAP_IP_ADDRESS_LABEL" description="MAP_IP_ADDRESS_DESC"> </field> 
+                 <field name="map_to_url" type="jchgroup" section="start" label="MAP_TO_URL_LABEL" description="MAP_TO_URL_DESC"> </field>
+            </fieldset>
+        </fields>
+    </config>
+</extension>
