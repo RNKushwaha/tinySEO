@@ -3,7 +3,7 @@
  * @Copyright
  * @package     tinySEO - Small but Powerful SEO tool for Joomla 3.x
  * @author      RN Kushwaha <rn.kushwaha022@gmail.com>
- * @version     1.0.0
+ * @version     1.0.1
  * @copyright   Copyright (C) 2017 RN Kushwaha. All rights reserved.
  * @link        https://github.com/RNKushwaha022/tinySEO
  * 
