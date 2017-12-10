@@ -42,4 +42,7 @@
             </fieldset>
         </fields>
     </config>
+    <updateservers>
+        <server type="extension" name="tinySEO Update Site">https://raw.githubusercontent.com/RNKushwaha022/tinySEO/master/manifest.xml</server>
+    </updateservers>
 </extension>
