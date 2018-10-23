@@ -3,7 +3,7 @@
  * @Copyright
  * @package     tinySEO - Small but Powerful SEO tool for Joomla 3.x
  * @author      RN Kushwaha <rn.kushwaha022@gmail.com>
- * @version     1.0.1
+ * @version     1.0.2
  * @copyright   Copyright (C) 2017 RN Kushwaha. All rights reserved.
  * @link        https://github.com/RNKushwaha022/tinySEO
  * 
@@ -29,7 +29,7 @@ jimport('joomla.plugin.plugin');
 
 class plgSystemTinyseo extends JPlugin
 {
-    function getUrlProtocol(){
+    public function getUrlProtocol(){
         $protocol = 'http';
         if ( (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == 'on') || 
                 (!empty($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] == 'https' || !empty($_SERVER['HTTP_X_FORWARDED_SSL']) && $_SERVER['HTTP_X_FORWARDED_SSL'] == 'on')
@@ -39,7 +39,7 @@ class plgSystemTinyseo extends JPlugin
             return $protocol;
     }
 
-    function onBeforeCompileHead () {
+    public function onBeforeCompileHead () {
         $mainframe      = JFactory::getApplication();
         if ($mainframe->isSite()){
 
@@ -48,14 +48,14 @@ class plgSystemTinyseo extends JPlugin
             if ($plugin){
                 $pluginParams            = new JRegistry($plugin->params);
                 $remove_trailing_slashes = $pluginParams->get('remove_trailing_slashes');
-                $request_uri= $_SERVER['REQUEST_URI'];
+                $request_uri             = $_SERVER['REQUEST_URI'];
 
                  if( $remove_trailing_slashes==1 && strlen($request_uri)>0 && preg_match('/\/$/',$request_uri)){
-                    $doc = JFactory::getDocument();
-                    $url        = JURI::root();
-                    $sch        = parse_url($url, PHP_URL_SCHEME);
-                    $server     = parse_url($url, PHP_URL_HOST);
-                    $canonical  = htmlspecialchars($request_uri); 
+                    $doc          = JFactory::getDocument();
+                    $url          = JURI::root();
+                    $sch          = parse_url($url, PHP_URL_SCHEME);
+                    $server       = parse_url($url, PHP_URL_HOST);
+                    $canonical    = htmlspecialchars($request_uri); 
                     $canonicalUrl = $sch.'://'.$server.rtrim($canonical,'/');
                     //remove slashes from canonical tag
                     foreach ( $doc->_links as $key => $array ) {
@@ -66,8 +66,6 @@ class plgSystemTinyseo extends JPlugin
                     }
                 }
             }
-
-            
         }
     }
 
@@ -89,7 +87,7 @@ class plgSystemTinyseo extends JPlugin
                 $redirect_to_lowercase   = $pluginParams->get('redirect_to_lowercase');
                 $http_host               = $_SERVER['HTTP_HOST'];
                 $request_uri             = $_SERVER['REQUEST_URI'];
-                $redirect = $mapurl = $redirect_home = $trailpresent = $lowercase = $preg_match = false;
+                $redirect                = $mapurl = $redirect_home = $trailpresent = $lowercase = $preg_match = false;
                 
                 //redirect IP e.g. 162.120.2.xxx to abc-test.com
                 if(strlen($map_ip_address)>=5 && $http_host==$map_ip_address){
@@ -122,25 +120,27 @@ class plgSystemTinyseo extends JPlugin
                 if($redirect){
                     if($redirect_status_code==1) header("HTTP/1.1 301 Moved Permanently");
                     //if need to use url map
-                    if($mapurl  == true) $url = $map_to_url.$request_uri;
+                    if($mapurl  === true) $url = $map_to_url.$request_uri;
                     else  $url = $protocol.'://'.$http_host.$request_uri;
 
                     //if need to remove index.php
-                    if($redirect_home == true) $url = $protocol.'://'.$http_host;
+                    if($redirect_home === true) $url = $protocol.'://'.$http_host;
 
                     //if need to remove trailing slashes
-                    if($remove_trailing_slashes==1 && $trailpresent == true) $url = rtrim($url,'/');
+                    if($remove_trailing_slashes==1 && $trailpresent === true) $url = rtrim($url,'/');
                     
                     //if need to lowercase url
-                    if($lowercase == true) {
+                    if($lowercase === true) {
                         //skip lowercase of query string if it is found because it may break the site
-                        if($preg_match==true) $url = strtolower(strchr($url,'?',true)).strchr($url,'?',false);
+                        if($preg_match===true) $url = strtolower(strchr($url,'?',true)).strchr($url,'?',false);
                         else $url = strtolower($url);
                     }
+
                     header('Location: '.$url);
                     exit();
                 }
             }
         }
     }
+    
 }
